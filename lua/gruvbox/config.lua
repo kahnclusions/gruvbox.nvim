@@ -1,6 +1,7 @@
 local config = {}
 
 config.options = {
+   variant = "classic",
    transparent_background = false,
    term_colors = false,
    contrast_dark = "medium",

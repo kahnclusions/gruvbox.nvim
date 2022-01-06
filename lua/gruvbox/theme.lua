@@ -1,6 +1,6 @@
 local M = {}
 
-function M.get(cp, config)
+local function get_base(cp, config)
    cp.none = "NONE"
 
    return {
@@ -33,7 +33,7 @@ function M.get(cp, config)
       NormalNC = { fg = cp.fg0, bg = config.transparent_background and cp.none or cp.bg0 }, -- normal text in non-current windows
       NormalSB = { fg = cp.fg0, bg = cp.bg0 }, -- normal text in non-current windows
       NormalFloat = { fg = cp.fg0, bg = cp.bg1 }, -- Normal text in floating windows.
-      FloatBorder = { fg = cp.blue },
+      FloatBorder = { fg = cp.bg4, bg = cp.bg1 },
       Pmenu = { bg = cp.bg3, fg = cp.gray2 }, -- Popup menu: normal item.
       PmenuSel = { fg = cp.fg0, bg = cp.bg4, style = "bold" }, -- Popup menu: selected item.
       PmenuSbar = { bg = cp.bg4 }, -- Popup menu: scrollbar.
@@ -89,6 +89,69 @@ function M.get(cp, config)
       Typedef = { fg = cp.yellow },
       SpecialChar = { fg = cp.red },
    }
+end
+
+local function get_integrations(cp, config)
+   local integrations = config["integrations"]
+   local final_integrations = {}
+
+   for integration in pairs(integrations) do
+      local cot = false
+      if type(integrations[integration]) == "table" then
+         if integrations[integration]["enabled"] == true then
+            cot = true
+         end
+      else
+         if integrations[integration] == true then
+            cot = true
+         end
+      end
+
+      if cot then
+         final_integrations = vim.tbl_deep_extend(
+            "force",
+            final_integrations,
+            require("gruvbox.integrations." .. integration).get(cp, config)
+         )
+      end
+   end
+
+   final_integrations = vim.tbl_deep_extend(
+      "force",
+      final_integrations,
+      require("gruvbox.remaps").get_hig_remaps() or {}
+   )
+   return final_integrations
+end
+
+local function get_terminal(cp)
+   local term_colors = {
+      terminal_0 = cp.bg0,
+      terminal_1 = cp.red_a,
+      terminal_2 = cp.green_a,
+      terminal_3 = cp.yellow_a,
+      terminal_4 = cp.blue_a,
+      terminal_5 = cp.purple_a,
+      terminal_6 = cp.aqua_a,
+      terminal_7 = cp.gray,
+      terminal_8 = cp.gray_a,
+      terminal_9 = cp.red,
+      terminal_10 = cp.green,
+      terminal_11 = cp.yellow,
+      terminal_12 = cp.blue,
+      terminal_13 = cp.purple,
+      terminal_14 = cp.aqua,
+      terminal_15 = cp.fg0
+   }
+   return term_colors
+end
+
+function M.apply(cp, config)
+   local theme = {}
+   theme.base = get_base(cp, config)
+   theme.integrations = get_integrations(cp, config)
+   theme.terminal = get_terminal(cp)
+   return theme
 end
 
 return M

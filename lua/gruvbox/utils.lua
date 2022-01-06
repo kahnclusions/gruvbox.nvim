@@ -1,4 +1,4 @@
-local hsluv = require("gruvbox.utils.hsluv")
+local hsluv = require("gruvbox.hsluv")
 
 local util = {}
 
@@ -84,6 +84,27 @@ function util.syntax(tbl)
    end
 end
 
+function util.terminal(cp)
+   local g = vim.g
+   g.terminal_color_0 = cp.terminal_0
+	g.terminal_color_1 = cp.terminal_1
+	g.terminal_color_2 = cp.terminal_2
+	g.terminal_color_3 = cp.terminal_3
+	g.terminal_color_4 = cp.terminal_4
+	g.terminal_color_5 = cp.terminal_5
+	g.terminal_color_6 = cp.terminal_6
+	g.terminal_color_7 = cp.terminal_7
+
+	g.terminal_color_8 = cp.terminal_8
+	g.terminal_color_9 = cp.terminal_9
+	g.terminal_color_10 = cp.terminal_10
+	g.terminal_color_11 = cp.terminal_11
+	g.terminal_color_12 = cp.terminal_12
+	g.terminal_color_13 = cp.terminal_13
+	g.terminal_color_14 = cp.terminal_14
+	g.terminal_color_15 = cp.terminal_15
+end
+
 function util.load(theme)
    vim.cmd("hi clear")
    if vim.fn.exists("syntax_on") then
@@ -94,6 +115,10 @@ function util.load(theme)
 
    util.syntax(theme.base)
    util.syntax(theme.integrations)
+
+   if require("gruvbox.config").options["term_colors"] then
+		util.terminal(theme.terminal)
+	end
 end
 
 return util

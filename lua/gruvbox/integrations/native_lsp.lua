@@ -1,4 +1,4 @@
-local util = require("gruvbox.utils.util")
+local util = require("gruvbox.utils")
 
 local M = {}
 

@@ -1,3 +1,4 @@
 lua << EOF
-require('gruvbox').load()
+gruvbox.setup({ variant = "classic" })
+gruvbox.load()
 EOF
