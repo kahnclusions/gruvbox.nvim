@@ -1,7 +1,16 @@
-local function get_colors(bg, config)
-   bg = bg or "dark"
+local function get_bg()
+   local bg = vim.o.background
+   if bg == nil then
+      bg = "dark"
+      vim.o.background = bg
+   end
+   return bg
+end
 
-   local variant = config.variant
+local function get_colors(config, variant)
+   local bg = get_bg()
+   variant = variant or config.variant
+
    local gruvbox = require("gruvbox.colors." .. variant)
    local colors = {}
 

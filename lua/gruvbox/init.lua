@@ -5,17 +5,8 @@ local utils = require("gruvbox.utils")
 
 local M = {}
 
-local function get_bg()
-   local bg = vim.o.background
-   if bg == nil then
-      bg = "dark"
-      vim.o.background = bg
-   end
-   return bg
-end
-
-function M.load(variant)
-   local colors = get_colors(get_bg(), config.options)
+function M.load()
+   local colors = get_colors(config.options)
    utils.load(theme.apply(colors, config.options))
 end
 
@@ -24,15 +15,20 @@ function M.remap(hi_groups)
    require("gruvbox.remaps").set_hig_remaps(hi_groups)
 end
 
-function M.get_colors(variant)
-   variant = variant or "classic"
-   local colors = get_colors(get_bg(), config.options)
+function M.get_colors()
+   local colors = {
+      gruvbox = get_colors(config.options, "classic"),
+      materialbox = get_colors(config.options, "material"),
+   }
    return colors
 end
 
-function M.get_theme(variant)
-   local colors = get_colors(get_bg(), config.options)
-   return theme.apply(colors, config.options)
+function M.get_theme()
+   local themes = {
+      gruvbox = theme.apply(get_colors(config.options, "classic"), config.options),
+      materialbox = theme.apply(get_colors(config.options, "material"), config.options),
+   }
+   return themes
 end
 
 ---@param custom_options table Configuration overrides
