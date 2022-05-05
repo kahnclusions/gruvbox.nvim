@@ -50,7 +50,7 @@ Plugin 'kahnclusions/gruvbox.nvim'
 #### init.lua
 
 ```lua
-local catppuccin = require("gruvbox")
+local gruvbox = require("gruvbox")
 
 gruvbox.setup({ --[[ your settings here ]] })
 
@@ -63,7 +63,7 @@ vim.cmd[[colorscheme materialbox]]
 
 ```vim
 lua << EOF
-local catppuccin = require("gruvbox")
+local gruvbox = require("gruvbox")
 
 gruvbox.setup({ --[[ your settings here ]] })
 EOF
