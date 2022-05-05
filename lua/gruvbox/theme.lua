@@ -33,9 +33,9 @@ local function get_base(cp, config)
       NormalNC = { fg = cp.fg0, bg = config.transparent_background and cp.none or cp.bg0 }, -- normal text in non-current windows
       NormalSB = { fg = cp.fg0, bg = cp.bg0 }, -- normal text in non-current windows
       NormalFloat = { fg = cp.fg0, bg = cp.bg1 }, -- Normal text in floating windows.
-      FloatBorder = { fg = cp.bg4, bg = cp.bg1 },
-      Pmenu = { bg = cp.bg3, fg = cp.gray2 }, -- Popup menu: normal item.
-      PmenuSel = { fg = cp.fg0, bg = cp.bg4, style = "bold" }, -- Popup menu: selected item.
+      FloatBorder = { fg = cp.blue, bg = cp.bg1 },
+      Pmenu = { bg = cp.bg1, fg = cp.fg1 }, -- Popup menu: normal item.
+      PmenuSel = { fg = cp.fg1, bg = cp.bg2 }, -- Popup menu: selected item.
       PmenuSbar = { bg = cp.bg4 }, -- Popup menu: scrollbar.
       PmenuThumb = { bg = cp.gray }, -- Popup menu: Thumb of the scrollbar.
       Question = { fg = cp.blue }, -- |hit-enter| prompt and yes/no questions

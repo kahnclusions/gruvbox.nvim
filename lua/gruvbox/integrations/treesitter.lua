@@ -33,12 +33,12 @@ function M.get(cp, config)
       -- builtin
       TSConstBuiltin = { fg = cp.purple, style = config.styles.keywords }, -- For constant that are built in the language: nil in Lua.
       TSFuncBuiltin = { fg = cp.orange }, -- For builtin functions: table.insert in Lua.
-      TSTypeBuiltin = { fg = cp.yellow }, -- For builtin types.
+      TSTypeBuiltin = { fg = cp.yellow, bold = false, italic = false }, -- For builtin types.
       TSVariableBuiltin = { fg = cp.aqua }, -- Variable names that are defined by the languages, like this or self.
 
       TSFunction = { fg = cp.green, style = config.styles.functions }, -- For function (calls and definitions).
       TSFuncMacro = { fg = cp.red }, -- For macro defined functions (calls and definitions): each macro_rules in Ruscp.
-      TSParameter = { fg = cp.blue }, -- For parameters of a function.
+      TSParameter = { fg = cp.blue, bold = false, italic = false }, -- For parameters of a function.
       TSKeywordFunction = { fg = cp.red, style = config.styles.keywords }, -- For keywords used to define a fuction.
       TSKeyword = { fg = keywords, style = config.styles.keywords }, -- For keywords that don't fall in previous categories.
       TSKeywordReturn = { fg = cp.pink },
