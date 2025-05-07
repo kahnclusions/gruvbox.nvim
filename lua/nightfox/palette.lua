@@ -44,7 +44,8 @@ M.foxes = {
   "nightfox",
   "nordfox",
   "terafox",
-  "daygruvfox"
+  "gruvbox_day",
+  "gruvbox_night"
 }
 
 local function override(color, ovr)

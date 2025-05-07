@@ -12,9 +12,9 @@ function M.get(spec, config, opts)
     SnacksPickerCursorLine = { bg = P.bg3, style = stl.variables },              -- various variable names
     SnacksPickerDimmed = { fg = P.red.base, bg = P.bg0, style = stl.variables }, -- various variable names
 
-    SnacksIndent = { fg = "#d5c4a1" },
+    SnacksIndent = { fg = "#504945" },
     SnacksIndentChar = { fg = spec.bg0 },
-    SnacksIndentBlank = { fg = "#d5c4a1" },
+    SnacksIndentBlank = { fg = "#504945" },
 
     SnacksIndentContextChar = { fg = spec.syntax.variable },
     SnacksIndentContextStart = { sp = spec.syntax.variable, style = "underline" },
